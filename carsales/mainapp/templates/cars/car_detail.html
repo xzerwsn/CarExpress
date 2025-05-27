@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="car-gallery">
+                <div class="slider-container" id="sliderContainer">
+                    {% for image in car.images.all %}
+                    <div class="slide">
+                        <img src="{{ image.image.url }}" alt="{{ car.car_model }} {{ car.year }}">
+                    </div>
+                    {% empty %}
+                    <div class="slide">
+                        <div class="no-image">
+                            Нет изображений автомобиля
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                {% if car.images.count > 1 %}
+                <div class="slider-nav">
+                    <div class="nav-arrow" id="prevBtn">‹</div>
+                    <div class="nav-arrow" id="nextBtn">›</div>
+                </div>
+                
+                <div class="slider-dots" id="sliderDots">
+                    {% for image in car.images.all %}
+                    <div class="dot {% if forloop.first %}active{% endif %}" 
+                         data-index="{{ forloop.counter0 }}"></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <h1>{{ car.car_model }} {{ car.year }}</h1>
+            <h3 class="text-primary">${{ car.price }}</h3>
+            
+            <table class="table table-striped mt-4">
+                <tr>
+                    <th>Производитель</th>
+                    <td>{{ car.car_model.manufacturer }}</td>
+                </tr>
+                <tr>
+                    <th>Модель</th>
+                    <td>{{ car.car_model.name }}</td>
+                </tr>
+                <tr>
+                    <th>Год выпуска</th>
+                    <td>{{ car.year }}</td>
+                </tr>
+                <tr>
+                    <th>Пробег</th>
+                    <td>{{ car.mileage }} км</td>
+                </tr>
+                <tr>
+                    <th>Цвет</th>
+                    <td>{{ car.color }}</td>
+                </tr>
+                <tr>
+                    <th>Двигатель</th>
+                    <td>{{ car.engine_size }} л, {{ car.horsepower }} л.с.</td>
+                </tr>
+                <tr>
+                    <th>Тип кузова</th>
+                    <td>{{ car.get_body_type_display }}</td>
+                </tr>
+                <tr>
+                    <th>Коробка передач</th>
+                    <td>{{ car.get_transmission_display }}</td>
+                </tr>
+                <tr>
+                    <th>Тип топлива</th>
+                    <td>{{ car.get_fuel_type_display }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <h3>Описание</h3>
+            <p>{{ car.description|linebreaks }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

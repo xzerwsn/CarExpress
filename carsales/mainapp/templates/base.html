@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarExpress</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">CAR EXPRESS</a>
+                <ul class="nav-links">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="{% url 'mainapp:car_list' %}">Каталог</a></li>
+                    <li><a href="#services" class="scroll-btn">Услуги</a></li>
+                    <li><a href="#about" class="scroll-btn">О нас</a></li>
+                    <li><a href="#contact" class="scroll-btn">Контакты</a></li>
+                </ul>
+                <a href="#contact" class="btn-contact">Связаться</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    <div class="container">
+        <footer>
+                <p>&copy; 2025 CarExpress. Все права защищены.</p>
+        </footer>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

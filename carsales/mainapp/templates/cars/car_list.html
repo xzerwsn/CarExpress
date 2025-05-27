@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="inventory-header">АВТОМОБИЛИ</h1>
+    
+    <div class="filter-form">
+        <form method="get">
+            <div class="row filter-row">
+                <div class="col-md-3">
+                    <label for="id_manufacturer">Марка</label>
+                    {{ form.manufacturer }}
+
+                    <label for="id_model">Модель</label>
+                    {{ form.model }}
+
+                    <label for="id_min_price">Цена от</label>
+                    {{ form.min_price }}
+
+                    <label for="id_max_price">Цена до</label>
+                    {{ form.max_price }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-filter">Фильтровать</button>
+        </form>
+    </div>
+    
+    <div class="row">
+        {% for car in cars %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card car-card h-100">
+                {% with car.images.first as main_image %}
+                    {% if main_image %}
+                        <img src="{{ main_image.image.url }}" class="card-img-top" alt="{{ car.car_model }}">
+                    {% else %}
+                        <div class="no-image-placeholder">
+                            <img src="/static/images/no-image.png" class="d-block w-100" alt="No image">
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ car.car_model.manufacturer.name }} {{ car.car_model.name }}</h5>
+                    <p class="card-text">
+                        <strong>Год:</strong> {{ car.year }}<br>
+                        <strong>Цена:</strong> {{ car.price }} ₽<br>
+                        <strong>Пробег:</strong> {{ car.mileage }} км
+                    </p>
+                    <a href="{% url 'mainapp:car_detail' car.slug %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">Автомобили не найдены</p>
+        </div>
+        {% endfor %}
+    </div>
+    
+    {% include "pagination.html" %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+$(document).ready(function() {
+    // Динамическая загрузка моделей при выборе производителя
+    $("#id_manufacturer").change(function() {
+        const manufacturerId = $(this).val();
+        const url = "{% url 'mainapp:get_models' %}";
+        
+        $.ajax({
+            url: url,
+            data: {
+                'manufacturer': manufacturerId
+            },
+            success: function(data) {
+                $("#id_model").html(data);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
