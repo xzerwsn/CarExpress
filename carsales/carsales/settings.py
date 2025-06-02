@@ -57,6 +57,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://careepress.onreader.com',
+    # Add other trusted domains if needed
+]
+
 ROOT_URLCONF = 'carsales.urls'
 
 TEMPLATES = [
