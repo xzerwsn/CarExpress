@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Автопрокрутка
-    let slideInterval = setInterval(nextSlide, 2500);
+    let slideInterval = setInterval(nextSlide, 5000);
     
     slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    slider.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 2500));
+    slider.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
 });
