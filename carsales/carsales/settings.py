@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://careepress.onreader.com',
+    'https://carexpress.onrender.com',
     # Add other trusted domains if needed
 ]
 
