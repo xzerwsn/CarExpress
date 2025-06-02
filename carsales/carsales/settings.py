@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-3@h4vaf1d(wghiqxql%5)m^r_!qnbb#rv2(x)r)^g1o1l_c*8h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+
+    'carexpress.onrender.com',
+    'localhost',  # для локальной разработки
+    '127.0.0.1',  # для локальной разработки
+
+]
 
 
 # Application definition
