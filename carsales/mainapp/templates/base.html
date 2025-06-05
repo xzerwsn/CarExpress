@@ -16,11 +16,11 @@
                 <ul class="nav-links">
                     <li><a href="/">Главная</a></li>
                     <li><a href="{% url 'mainapp:car_list' %}">Каталог</a></li>
-                    <li><a href="#services" class="scroll-btn">Услуги</a></li>
-                    <li><a href="#about" class="scroll-btn">О нас</a></li>
-                    <li><a href="#contact" class="scroll-btn">Контакты</a></li>
+                    <li><a href="#services" class="scroll-btn" data-target="services">Услуги</a></li>
+                    <li><a href="#about" class="scroll-btn" data-target="about">О нас</a></li>
+                    <li><a href="#contact" class="scroll-btn" data-target="contact">Контакты</a></li>
                 </ul>
-                <a href="/#contact" class="btn-contact">Связаться</a>
+                <a href="/#contact" class="btn-contact" data-target="contact">Связаться</a>
             </nav>
         </div>
     </header>

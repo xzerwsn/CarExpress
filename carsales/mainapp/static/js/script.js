@@ -147,3 +147,22 @@ document.addEventListener('DOMContentLoaded', function() {
     slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
     slider.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
 });
+
+document.querySelectorAll('.scroll-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetSection = this.getAttribute('data-target');
+        const currentPage = window.location.pathname;
+
+        // Если текущая страница — главная (или другая целевая), прокручиваем к секции
+        if (currentPage === '/' || currentPage === '/index.html') {
+            const section = document.getElementById(targetSection);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // Иначе перенаправляем на главную с якорем
+            window.location.href = `/#${targetSection}`;
+        }
+    });
+});

@@ -117,11 +117,16 @@ header {
     padding: 48px 0 40px 0;
     position: relative;
 }
-.about-section h2, .services-section h2, .latest-cars-section h2, .contact-section h2 {
-    font-size: 2rem;
+.about-section h2,  .services-section h2, .latest-cars-section h2, .contact-section h2 {
+    font-size: 2.4rem;
     margin-bottom: 20px;
     font-weight: 600;
     color: #FFFFFF;
+}
+
+.about-section p,  .services-section p, .latest-cars-section p, .contact-section p {
+    font-size: 1.8rem;
+    font-weight: 400;
 }
 
 .firstAboutSection, .thirdAboutSection {
